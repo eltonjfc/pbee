@@ -1,8 +1,6 @@
 
 ## Overview
-PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors (52 features) to predict the free energy of binding of protein-protein complexes. The PBEE workflow is shown below. 
-
-In general, the pipeline works as follows: (i) the argument --ipdb receives the structure of the complex(es) in pdb format; (ii) the arguments --partner1 and --partner2 receives the chain ID of the binding partners; and (iii)  run the pre- and post-processing stages and returns the free energy of binding of the complex(es) (in kcal/mol) calculated by the super learner model. The PBEE starts pre-processing by checking that the chain IDs are actually included in the PDB file and then looks for gaps in the backbone.
+PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors (52 features) to predict the free energy of binding of protein-protein complexes. In general, the pipeline works as follows: (i) the argument **-\-ipdb** receives the structure of the complex(es) in pdb format; (ii) the arguments **-\-partner1** and **-\-partner2** receives the chain ID of the binding partners (e.g.: receptor and ligand, respectively) ; and (iii)  run the pre- and post-processing stages, and returns the free energy of binding of the complex(es) (in kcal/mol) calculated by the super learner model. The PBEE workflow is shown below:
 
 ```mermaid
 flowchart TB
@@ -45,12 +43,12 @@ cd /path/to/pbee/folder
 pip3 install -r requirements.txt
 ```
 
-RosettaCommons is not available in this repository and must be properly installed and configured to run PBEE. More information on downloading, installing and configuring can be found on the software's web page
+RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
 ## Download & Install
 
- 1. List item
- 2. ...
+ 1. 
+ 2. 
 
 ## Arguments description
 
@@ -62,3 +60,7 @@ RosettaCommons is not available in this repository and must be properly installe
 | -\-odir            | No       | Folder path to save the output files |
 | -\-ion_dist_cutoff | No       | Cutoff distance to detect ion(s) close to the protein atoms |          
 | -\-force_mode      | No       | Skip warning messages and continue |
+
+## Usage
+
+``pbee.py --ipdb 1xgu.pdb --partner1 AB --partner2 C``
