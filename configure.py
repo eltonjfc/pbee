@@ -34,7 +34,6 @@ def configure_pbee():
     return PbeePATH, basemodels, superlearner
 
 def requirements():
-    # Verifica se os programas e variáveis de ambiente estão disponíveis
     RosettaPATHS = ['ROSETTA3', 'ROSETTA3_BIN', 'ROSETTA3_TOOLS']
     count = 0
     for item in RosettaPATHS:
