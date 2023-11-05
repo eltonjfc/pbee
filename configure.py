@@ -3,7 +3,7 @@ from pbee import print_infos, print_end
 from shutil import which
 
 def configure_pbee():
-    PbeePATH = '/home/elton/Documents/bioinfo-tools/python/pbee'
+    PbeePATH = '/path/to/pbee/folder'
     
     # ---
     superlearner = f'{PbeePATH}/basemodels/super_learner_model.pkl' 
