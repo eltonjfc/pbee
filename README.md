@@ -8,23 +8,27 @@ In general, the pipeline works as follows: (i) the argument --ipdb receives the 
 flowchart TB
 	pdb[/PDB file/] 
 	step1[Extract chains] 
-	step2[Find gaps] 
+	step2{Find gaps}
 	step3[Identify ions] 
 	step4[Remove non-protein atoms] 
 	step5[Geometry optimization] 
 	step6[Interface analysis] 
 	step7[SL engine]
 	result[dGbind]
-
+	ends[End process]
+	
 	subgraph B['']
 	step5 --> step6 --> step7
 	end 
 	
 	subgraph A['']
-	step1 --> step2 --> step3 --> step4
+	step1 --> step2
+	step2 --> |Yes| ends
+	step2 --> |No| step3
+	step3 --> step4
 	end 
 	
-	pdb -.-> step1
+	pdb -.- step1
 	step4 -.-> step5
 	step7 -.-> result
 ``` 
