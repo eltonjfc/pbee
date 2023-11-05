@@ -81,7 +81,7 @@ The command above will redirect the outputs to `/path/to/pbee/folder/test/pbee_o
 
 ## Description of the Rosetta XML script
 
-The following is an example of an XML script used in the Rosetta software, a widely employed toolkit for protein modeling and molecular simulations. The script outlines a pipeline for analyzing and manipulating protein structures, utilizing a variety of scoring functions, residue selectors, simple metrics, filters, movers, and protocols. In this context, the script aims to assess and refine interactions between two protein chains, focusing on interaction energy and structural features. The script includes steps for minimization, energy metric calculation, and structure selection based on specific filters. The script begins by defining the scoring functions to be used, which weigh different energetic terms concerning protein interactions. Subsequently, residue selectors are set up to identify the protein chains of interest, labeled as "partner1" and "partner2." Task operations are also defined to initialize parameters from the command line. The next script section introduces simple metrics that evaluate specific aspects of the protein structure, such as interaction energy between selected residues in the "partner1" and "partner2" chains. In the filters section, a series of filters are defined to assess structural and energetic properties of interactions. These filters encompass calculations of shape complementarity, molecular surface contacts, interface holes, and changes in free energy (ddG). Movers are defined to carry out minimization and interface analysis. This includes minimization with varying parameters and levels of detail, as well as interface analysis to evaluate features such as packing and hydrogen bonding. Lastly, protocols are constructed using the defined movers and filters. The movers and filters are added in a specific sequence to perform desired analysis and refinement steps. This encompasses minimization, metric calculation, interface analysis, and the application of filters to select structures meeting predetermined criteria. In summary, the XML script represents a detailed plan for protein structure analysis and manipulation using Rosetta. It outlines a series of steps aimed at evaluating protein chain interactions and improving structure quality.
+The following is an example of a Rosetta XML script used in the PBEE. In general, the script outlines a pipeline for analyzing and manipulating protein structures, utilizing a variety of scoring functions, residue selectors, simple metrics, filters, movers, and protocols. In this context, the script aims to assess and refine interactions between two protein chains, focusing on interaction energy and structural features. Furthermore, the script includes steps for minimization, energy metric calculation, and structure selection based on specific filters. 
 
 ```
 <ROSETTASCRIPTS>
@@ -89,8 +89,8 @@ The following is an example of an XML script used in the Rosetta software, a wid
 	<ScoreFunction name="beta" weights="beta_nov16"/>
 </SCOREFXNS>
 <RESIDUE_SELECTORS>
-	<Chain name="partner1" chains="A"/>
-	<Chain name="partner2" chains="B"/>
+	<Chain name="partner1" chains="AB"/>
+	<Chain name="partner2" chains="C"/>
 </RESIDUE_SELECTORS>
 <TASKOPERATIONS>
 	<InitializeFromCommandline name="init"/>
@@ -99,15 +99,15 @@ The following is an example of an XML script used in the Rosetta software, a wid
 	<InteractionEnergyMetric name="ie" residue_selector="partner1" residue_selector2="partner2" scorefxn="beta"/>
 </SIMPLE_METRICS>
 <FILTERS>
-	<ShapeComplementarity name="sc" residue_selector1="partner1" residue_selector2="partner2" 		confidence="0"/>
-	<ContactMolecularSurface name="cms" distance_weight="0.5" target_selector="partner1" 	binder_selector="partner2 confidence="0"/>
+	<ShapeComplementarity name="sc" residue_selector1="partner1" residue_selector2="partner2" confidence="0"/>
+	<ContactMolecularSurface name="cms" distance_weight="0.5" target_selector="partner1" binder_selector="partner2 confidence="0"/>
 	<InterfaceHoles name="holes" jump="1" confidence="0"/>
 	<Ddg name="ddg_filter1" scorefxn="beta" jump="1" chain_num="2" repeats="1" repack="0" repack_bound="0" repack_unbound="0" threshold="99999" confidence="0"/>
 </FILTERS>
 <MOVERS>
 	<MinMover name="min1" scorefxn="beta" jump="1" max_iter="50000" tolerance="0.0001" cartesian="0" bb="0" chi="1" bb_task_operations="init" chi_task_operations="init"/>
 	<MinMover name="min2" scorefxn="beta" jump="1" max_iter="50000" tolerance="0.0001" cartesian="0" bb="1" chi="1" bb_task_operations="init" chi_task_operations="init"/>
-	<InterfaceAnalyzerMover name="ifa" scorefxn="beta" interface="A_B" packstat="1" interface_sc="1" tracer="1" scorefile_reporting_prefix="ifa"/>
+	<InterfaceAnalyzerMover name="ifa" scorefxn="beta" interface="AB_C" packstat="1" interface_sc="1" tracer="1" scorefile_reporting_prefix="ifa"/>
 	<RunSimpleMetrics name="iesum" metrics="ie"/>
 </MOVERS>
 <PROTOCOLS>
@@ -122,3 +122,5 @@ The following is an example of an XML script used in the Rosetta software, a wid
 </PROTOCOLS>
 </ROSETTASCRIPTS>
 ```
+
+The script begins by defining the scoring functions to be used, which weigh different energetic terms concerning protein interactions. Subsequently, residue selectors are set up to identify the protein chains of interest, labeled as "**partner1" and "partner2." Task operations are also defined to initialize parameters from the command line. The next script section introduces simple metrics that evaluate specific aspects of the protein structure, such as interaction energy between selected residues in the "partner1" and "partner2" chains. In the filters section, a series of filters are defined to assess structural and energetic properties of interactions. These filters encompass calculations of shape complementarity, molecular surface contacts, interface holes, and changes in free energy (ddG). Movers are defined to carry out minimization and interface analysis. This includes minimization with varying parameters and levels of detail, as well as interface analysis to evaluate features such as packing and hydrogen bonding. Lastly, protocols are constructed using the defined movers and filters. The movers and filters are added in a specific sequence to perform desired analysis and refinement steps. This encompasses minimization, metric calculation, interface analysis, and the application of filters to select structures meeting predetermined criteria. In summary, the XML script represents a detailed plan for protein structure analysis and manipulation using Rosetta. It outlines a series of steps aimed at evaluating protein chain interactions and improving structure quality.
