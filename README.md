@@ -1,9 +1,11 @@
 
 ## Overview
-PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use Rosetta quantites to predict the free energy of binding of protein-protein complexes. The PBEE's workflow is shown below:
+PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors (52 features) to predict the free energy of binding of protein-protein complexes. The PBEE workflow is shown below. 
+
+In general, the pipeline works as follows: (i) the argument --ipdb receives the structure of the complex(es) in pdb format; (ii) the arguments --partner1 and --partner2 receives the chain ID of the binding partners; and (iii)  run the pre- and post-processing stages and returns the free energy of binding of the complex(es) (in kcal/mol) calculated by the super learner model. The PBEE starts pre-processing by checking that the chain IDs are actually included in the PDB file and then looks for gaps in the backbone.
 
 ```mermaid
-flowchart LR
+flowchart TB
 	pdb[/PDB file/] 
 	step1[Extract chains] 
 	step2[Find gaps] 
@@ -14,22 +16,18 @@ flowchart LR
 	step7[SL engine]
 	result[dGbind]
 
-	subgraph Post-processing
+	subgraph B['']
 	step5 --> step6 --> step7
 	end 
 	
-	subgraph Pre-processing 
+	subgraph A['']
 	step1 --> step2 --> step3 --> step4
 	end 
 	
 	pdb -.-> step1
 	step4 -.-> step5
 	step7 -.-> result
-```
-
-## Files description
-
-## Download
+``` 
 
 ## Requirements
 
@@ -37,26 +35,26 @@ flowchart LR
 - numpy 1.24.4
 - pandas 2.0.3
 
-The file `/path/to/pbee/requirements.txt` can be used to install (or update) the numpy and pandas packages using the following commands: 
-
+Use `/path/to/pbee/requirements.txt` to install (or update) the numpy and pandas packages:
 ```
 cd /path/to/pbee/folder
 pip3 install -r requirements.txt
 ```
 
-## Installing
+RosettaCommons is not available in this repository and must be properly installed and configured to run PBEE. More information on downloading, installing and configuring can be found on the software's web page
 
-The following explains all the procedures required to install and configure the PBEE pipeline.
+## Download & Install
 
  1. List item
  2. ...
 
-## Usage
+## Arguments description
+
 | Argument          | Mandatory | Description |
 |-------------------|-----------|-------------|
-| -\-ipdb            | Yes      |             |
-| -\-partner1        | Yes      |             |
-| -\-partner2        | Yes      |             |
-| -\-odir            | No       |             |
-| -\-ion_dist_cutoff | No       |             |
-| -\-force_mode      | No       |             |
+| -\-ipdb            | Yes      | Input files in the PDB format |
+| -\-partner1        | Yes      | Chain ID of the binding partner (e.g.: receptor) |
+| -\-partner2        | Yes      | Chain ID of the binding partner (e.g.: ligand) |
+| -\-odir            | No       | Folder path to save the output files |
+| -\-ion_dist_cutoff | No       | Cutoff distance to detect ion(s) close to the protein atoms |          
+| -\-force_mode      | No       | Skip warning messages and continue |
