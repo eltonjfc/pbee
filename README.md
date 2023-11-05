@@ -46,9 +46,10 @@ flowchart TB
 ## Download & Install
 
 1. Clone this repository on your machine: 
-3. Open the `setup.sh` file (via terminal or text editor) and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
-5. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
-6. To install (or update) some of the necessary packages: `pip3 install -r requirements.txt`
+2. Open the `setup.sh` file (via terminal or text editor) and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
+3. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
+4. To install (or update) some of the necessary packages: `pip3 install -r requirements.txt`
+5. Download (or update) the ML models: `python3 update_basemodels.py`
 
 **⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
@@ -99,7 +100,7 @@ The following is an example of a Rosetta XML script used in the PBEE. In general
 </SIMPLE_METRICS>
 <FILTERS>
 	<ShapeComplementarity name="sc" residue_selector1="partner1" residue_selector2="partner2" confidence="0"/>
-	<ContactMolecularSurface name="cms" distance_weight="0.5" target_selector="partner1" binder_selector="partner2" confidence="0"/>
+	<ContactMolecularSurface name="cms" distance_weight="0.5" target_selector="partner1" binder_selector="partner2 confidence="0"/>
 	<InterfaceHoles name="holes" jump="1" confidence="0"/>
 	<Ddg name="ddg_filter1" scorefxn="beta" jump="1" chain_num="2" repeats="1" repack="0" repack_bound="0" repack_unbound="0" threshold="99999" confidence="0"/>
 </FILTERS>
