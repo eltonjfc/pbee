@@ -7,7 +7,6 @@
 # Aggeu Magalhaes Institute, Oswaldo Cruz Foundation, Recife-PE, Brazil
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import os, math, time, shutil, argparse, subprocess
-from posix import environ
 import pandas as pd
 from configure import *
 from modules.detect_ions import *
