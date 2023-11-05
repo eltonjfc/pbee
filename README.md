@@ -2,11 +2,6 @@
 ## Overview
 PBEE (**P**rotein **B**inding **E**nergy **E**stimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors to predict the free energy of binding of protein-protein complexes.
 
-The pipeline works as follows: 
-- **-\-ipdb** receives the structure of the complex(es) in pdb format;
-- **-\-partner1** and **-\-partner2** receives the chain ID of the binding partners;
-- PBEE runs the pre- and post-processing stages and returns the free energy of binding of the complex(es) calculated by the ML model.
-
 The PBEE workflow is shown below:
 
 ```mermaid
@@ -40,26 +35,22 @@ flowchart TB
 
 ## Requirements
 
-- RosettaCommons 3.12
-- numpy 1.24.4
-- pandas 2.0.3
-- ML baselines (.pkl files)
+| Package        | Version |
+|----------------|---------|
+| RosettaCommons | 3.12    |
+| numpy          | 1.24.4  |
+| pandas         | 2.0.3   |
+| gdown          | 4.7.1   |
 
-Use `/path/to/pbee/requirements.txt` to install (or update) the numpy and pandas packages:
-
-```bash
-cd /path/to/pbee/folder && pip3 install -r requirements.txt
-```
-
-```bash
-cd /path/to/pbee/folder && 
-```
-RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
 ## Download & Install
 
- 1. 
- 2. 
+1. Clone this repository on your machine: 
+3. Open the `setup.sh` file (via terminal or text editor) and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
+5. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
+6. To install (or update) some of the necessary packages: `pip3 install -r requirements.txt`
+
+**⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
 ## Arguments description
 
@@ -74,13 +65,16 @@ RosettaCommons binaries are not available in this repository and must be properl
 
 ## Usage
 
-The example below includes the structure of an antibody (HyHEL-63) that binds to lysozyme C (PDB 1XGU) with a binding affinity of -11.28 kcal/mol. In the PDB file, the heavy and light chains of the antibody (ligand) are coded as chain "A" and "B", respectively, while Lysozyme C (receptor) is coded as "C". 
+The example below includes the structure of an antibody (HyHEL-63) that binds to lysozyme C (PDB 1XGU) with a binding affinity of -11.28 kcal/mol. In the PDB file, the heavy and light chains of the antibody (ligand) are coded as chain "A" and "B", respectively, while Lysozyme C (receptor) is coded as "C". Therefore, the PBEE should be run as follows:
 
-```bash
-cd /path/to/pbee/folder && pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
+``` 
+cd /path/to/pbee/folder
+```
+```
+python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
 
-The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of these outputs can be seen in the table below:
+The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of the output files generated can be seen in the table below:
 
 
 
