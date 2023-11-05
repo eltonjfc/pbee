@@ -7,8 +7,9 @@
 # Aggeu Magalhaes Institute, Oswaldo Cruz Foundation, Recife-PE, Brazil
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import os, math, time, shutil, argparse, subprocess
+from posix import environ
 import pandas as pd
-from configure import *
+from modules.configure import *
 from modules.detect_ions import *
 from modules.detect_gaps import *
 from modules.rosettaXML import *
@@ -154,7 +155,8 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
             f'{outdir}/{basename}_jd2_01.pdb',
             f'{outdir}/{basename}_jd2_02.pdb',
             f'{outdir}/{basename}_jd2.pdb',
-            f'{outdir}/{basename}_jd2_0001.pdb'])
+            f'{outdir}/{basename}_jd2_0001.pdb',
+            f'{outdir}/score.sc'])
 
 def remove_files(files):
     for file in files:
@@ -359,13 +361,13 @@ def print_infos(message, type):
 def print_end():
     exit('\n ####################### End process ############################\n')
 
-def header(version):
+def header():
     print('')
     print( ' =======================================')
     print( ' Protein Binding Energy Estimator (PBEE)')
     print()
     print( '     DOI: -')
-    print(f' version: {version}')
+    print(f' version: ')
     print( ' =======================================')
     print('')
 
@@ -377,10 +379,12 @@ if (__name__ == "__main__"):
     submit_dir = os.getcwd()
 
     # Imprime o cabeçalho na tela
-    header(version='-')
+    header()
 
     # Define PbeePATH e algoritmos ML
-    PbeePATH, basemodels, superlearner = configure_pbee()
+    PbeePATH     = configure_pbee()
+    basemodels   = configure_basemodels(PbeePATH)
+    superlearner = configure_sl(PbeePATH)
     requirements()
 
     # Configura os argumentos do script
