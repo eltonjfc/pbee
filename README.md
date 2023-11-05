@@ -1,6 +1,13 @@
 
 ## Overview
-PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors (52 features) to predict the free energy of binding of protein-protein complexes. In general, the pipeline works as follows: (i) the argument **-\-ipdb** receives the structure of the complex(es) in pdb format; (ii) the arguments **-\-partner1** and **-\-partner2** receives the chain ID of the binding partners (e.g.: receptor and ligand, respectively) ; and (iii)  run the pre- and post-processing stages, and returns the free energy of binding of the complex(es) (in kcal/mol) calculated by the super learner model. The PBEE workflow is shown below:
+PBEE (Protein Binding Energy Estimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors (52 features) to predict the free energy of binding of protein-protein complexes.
+
+In general, the pipeline works as follows: 
+- **-\-ipdb** receives the structure of the complex(es) in pdb format;
+- **-\-partner1** and **-\-partner2** receives the chain ID of the binding partners;
+- run the pre- and post-processing stages and returns the free energy of binding of the complex(es) calculated by the ML model.
+
+The PBEE workflow is shown below:
 
 ```mermaid
 flowchart TB
@@ -15,11 +22,11 @@ flowchart TB
 	result[dGbind]
 	ends[End process]
 	
-	subgraph B['']
+	subgraph B[ ]
 	step5 --> step6 --> step7
 	end 
 	
-	subgraph A['']
+	subgraph A[ ]
 	step1 --> step2
 	step2 --> |Yes| ends
 	step2 --> |No| step3
@@ -63,4 +70,10 @@ RosettaCommons binaries are not available in this repository and must be properl
 
 ## Usage
 
-``pbee.py --ipdb 1xgu.pdb --partner1 AB --partner2 C``
+The example below includes the structure of an antibody (HyHEL-63) that binds to lysozyme C (PDB 1XGU) with a binding affinity of -11.28 kcal/mol. In the PDB file, the heavy and light chains of the antibody (ligand) are coded as chain "A" and "B", respectively, while Lysozyme C (receptor) is coded as "C". 
+
+
+```
+cd /path/to/pbee/folder
+pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
+```
