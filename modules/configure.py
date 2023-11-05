@@ -10,24 +10,27 @@ def configure_pbee():
         return PbeePATH
 
 def configure_basemodels(PbeePATH):
-    basemodels = [
-        f'{PbeePATH}/basemodels/base_model_LinearRegression.pkl',
-        f'{PbeePATH}/basemodels/base_model_ElasticNet.pkl',
-        f'{PbeePATH}/basemodels/base_model_SVR.pkl',
-        f'{PbeePATH}/basemodels/base_model_DecisionTreeRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_KNeighborsRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_AdaBoostRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_BaggingRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_RandomForestRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_ExtraTreesRegressor.pkl',
-        f'{PbeePATH}/basemodels/base_model_XGBRegressor.pkl']
     condition = os.path.isdir(f'{PbeePATH}/basemodels')
     if condition is True:
+        basemodels = [
+            f'{PbeePATH}/basemodels/base_model_LinearRegression.pkl',
+            f'{PbeePATH}/basemodels/base_model_ElasticNet.pkl',
+            f'{PbeePATH}/basemodels/base_model_SVR.pkl',
+            f'{PbeePATH}/basemodels/base_model_DecisionTreeRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_KNeighborsRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_AdaBoostRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_BaggingRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_RandomForestRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_ExtraTreesRegressor.pkl',
+            f'{PbeePATH}/basemodels/base_model_XGBRegressor.pkl']
         for item in basemodels:
             if os.path.isfile(item) is True:
                 continue
             else:
                 print(f' requirement not found: {os.path.basename(item)}'); exit()
+        return basemodels
+    else:
+        print(f' requirements not found'); exit()
 
 def configure_sl(PbeePATH):
     superlearner = f'{PbeePATH}/basemodels/super_learner_model.pkl'
