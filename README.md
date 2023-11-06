@@ -48,8 +48,7 @@ flowchart TB
 1. Clone this repository on your machine: `git clone https://github.com/eltonjfc/pbee.git`
 2. Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
 3. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
-4. To install (or update) some of the necessary packages: `pip3 install -r requirements.txt`
-5. Download (or update) the ML models: `python3 update_basemodels.py`
+4. Download (or update) the required packages, and ML models: `pip3 install -r requirements.txt && python3 update_basemodels.py`
 
 **⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
@@ -68,9 +67,6 @@ flowchart TB
 
 The example below includes the structure of an antibody (HyHEL-63) that binds to lysozyme C (PDB 1XGU) with a binding affinity of -11.28 kcal/mol. In the PDB file, the heavy and light chains of the antibody (ligand) are coded as chain "A" and "B", respectively, while Lysozyme C (receptor) is coded as "C". Therefore, the PBEE should be run as follows:
 
-``` 
-cd /path/to/pbee/folder
-```
 ```
 python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
