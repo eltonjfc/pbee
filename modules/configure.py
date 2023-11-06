@@ -2,10 +2,10 @@ import os, glob
 from shutil import which
 
 def configure_pbee():
-    PbeePATH = '/path/to/pbee/folder'
+    PbeePATH = ''
     condition = os.path.isdir(PbeePATH)
     if condition is False:
-        print(f'error: invalid PbeePATH (configure.py, line 6)'); exit()
+        print(f'error: invalid PbeePATH\n'); exit()
     else:
         return PbeePATH
 
@@ -27,16 +27,16 @@ def configure_basemodels(PbeePATH):
             if os.path.isfile(item) is True:
                 continue
             else:
-                print(f' requirement not found: {os.path.basename(item)}'); exit()
+                print(f' requirement not found: {os.path.basename(item)}\n'); exit()
         return basemodels
     else:
         print(f' requirements not found'); exit()
 
 def configure_sl(PbeePATH):
-    superlearner = f'{PbeePATH}/basemodels/super_learner_model.pkl'
+    superlearner = f'{PbeePATH}/super_learner_model.pkl'
     condition = os.path.isfile(superlearner)
     if condition is False:
-        print(f' requirement not found: super_learner_model.pkl'); exit()
+        print(f' requirement not found: super_learner_model.pkl\n'); exit()
     else:
         return superlearner
 
@@ -46,7 +46,7 @@ def requirements():
     for item in RosettaPATHS:
         condition = os.environ.get(item)
         if condition is None:
-            print(f' error (rosetta_path): {item} has not been defined as an environment variable.')
+            print(f' error (rosetta_path): {item} is not an environment variable.\n')
             count += 1; continue
     if count == 0:
         b1 = glob.glob(f'{os.environ["ROSETTA3_BIN"]}/score_jd2.default.*')[0]
@@ -57,7 +57,7 @@ def requirements():
         for item in requirements:
             condition = istool(item)
             if condition is False:
-                print(f' error: requirement not found -> {item}', type='none'); exit()
+                print(f' error: requirement not found -> {item}\n'); exit()
     else:
         exit()
 
