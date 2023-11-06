@@ -1,4 +1,3 @@
-
 ## Overview
 PBEE (**P**rotein **B**inding **E**nergy **E**stimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors to predict the free energy of binding of protein-protein complexes.
 
@@ -73,6 +72,13 @@ python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./
 
 The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of the output files generated can be seen in the table below:
 
+| File              | Description |
+|-------------------|-------------|
+| 1xgu.xml          |             |
+| 1xgu_rlx_0001.pdb |             |
+| dG_pred.csv       |             |
+| score_rlx.csv     |             |
+| score_rlx.sc      |             |
 
 
 ## Description of the Rosetta XML script
