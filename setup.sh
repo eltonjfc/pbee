@@ -1,4 +1,4 @@
-PbeePATH=/home/elton/Documents/bioinfo-tools/python/pbee
+PbeePATH='/home/elton/Documents/bioinfo-tools/python/pbee'
 
 # ---
-sed -i "s,/path/to/pbee/folder,${PbeePATH},g" ./modules/configure.py
+sed -i "5s,=.*,= '${PbeePATH}',g" ./modules/configure.py

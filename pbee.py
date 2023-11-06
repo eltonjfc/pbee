@@ -1,13 +1,12 @@
 #!/bin/python3
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Elaborated by Elton Chaves (chavesejf@gmail.com)
+# Written by Elton Chaves (chavesejf@gmail.com)
 # -----------------------------------------------------------------------------------
 # Protein Binding Energy Estimator (PBEE)
 # Protein Engineering and Biomaterial Modeling Group (BIOMAT)
 # Aggeu Magalhaes Institute, Oswaldo Cruz Foundation, Recife-PE, Brazil
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import os, math, time, shutil, argparse, subprocess
-from posix import environ
 import pandas as pd
 from modules.configure import *
 from modules.detect_ions import *
@@ -156,7 +155,7 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
             f'{outdir}/{basename}_jd2_02.pdb',
             f'{outdir}/{basename}_jd2.pdb',
             f'{outdir}/{basename}_jd2_0001.pdb',
-            f'{outdir}/score.sc'])
+            f'{outdir}/score.sc', f'{outdir}/score_rlx.csv', f'{outdir}/score_rlx.sc'])
 
 def remove_files(files):
     for file in files:
@@ -359,7 +358,7 @@ def print_infos(message, type):
         print(f' {message}')
 
 def print_end():
-    exit('\n ####################### End process ############################\n')
+    exit('\n --- End process ---\n')
 
 def header():
     print('')
