@@ -72,13 +72,13 @@ python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./
 
 The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of the output files generated can be seen in the table below:
 
-| File              | Description |
-|-------------------|-------------|
-| 1xgu.xml          |             |
-| 1xgu_rlx_0001.pdb |             |
-| dG_pred.csv       |             |
-| score_rlx.csv     |             |
-| score_rlx.sc      |             |
+| File              | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| 1xgu.xml          | Rosetta protocol that performs geometry optimization and interface analysis |
+| 1xgu_rlx_0001.pdb | .pdb file with optimized structure                                          |
+| dG_pred.csv       | .csv file with PBEE predictions                                             |
+| score_rlx.csv     |                                                                             |
+| score_rlx.sc      |                                                                             |
 
 
 ## Description of the Rosetta XML script
