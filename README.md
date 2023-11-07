@@ -1,5 +1,5 @@
 
-## Overview
+# Overview
 PBEE (**P**rotein **B**inding **E**nergy **E**stimator) is an easy-to-use pipeline written in Python3 that use a ML model based on Rosetta descriptors to predict the free energy of binding of protein-protein complexes.
 
 The PBEE workflow is shown below:
@@ -18,7 +18,7 @@ flowchart TB
 	ends[End process]
 	
 	subgraph B[ ]
-	step5 --> step6 --> step7
+	step5 --> |Minimized structure| step6 --> |Rosetta descriptors| step7
 	end 
 	
 	subgraph A[ ]
@@ -33,7 +33,7 @@ flowchart TB
 	step7 -.-> result
 ``` 
 
-## Requirements
+# Requirements
 
 | Package        | Version |
 |----------------|---------|
@@ -43,17 +43,16 @@ flowchart TB
 | gdown          | 4.7.1   |
 
 
-## Download & Install
+# Download & Install
 
-1. Clone this repository on your machine: 
-2. Open the `setup.sh` file (via terminal or text editor) and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
+1. Clone this repository on your machine: `git clone https://github.com/eltonjfc/pbee.git`
+2. Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
 3. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
-4. To install (or update) some of the necessary packages: `pip3 install -r requirements.txt`
-5. Download (or update) the ML models: `python3 update_basemodels.py`
+4. Download (or update) the required packages, and ML models: `pip3 install -r requirements.txt && python3 update_basemodels.py`
 
 **⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
-## Arguments description
+# Arguments description
 
 | Argument          | Mandatory | Description |
 |-------------------|-----------|-------------|
@@ -64,24 +63,30 @@ flowchart TB
 | -\-ion_dist_cutoff | No       | Cutoff distance to detect ion(s) close to the protein atoms |          
 | -\-force_mode      | No       | Skip warning messages and continue |
 
-## Usage
+# Usage
 
 The example below includes the structure of an antibody (HyHEL-63) that binds to lysozyme C (PDB 1XGU) with a binding affinity of -11.28 kcal/mol. In the PDB file, the heavy and light chains of the antibody (ligand) are coded as chain "A" and "B", respectively, while Lysozyme C (receptor) is coded as "C". Therefore, the PBEE should be run as follows:
 
-``` 
-cd /path/to/pbee/folder
-```
 ```
 python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
 
 The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of the output files generated can be seen in the table below:
 
+| File              | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| 1xgu.xml          | Rosetta protocol that performs geometry optimization and interface analysis |
+| 1xgu_rlx_0001.pdb | Optimized structure |
+| dG_pred.csv       | Rosetta descriptors and dGbind predicted by PBEE |
+| score_rlx.csv     | |
+| score_rlx.sc      | |
 
 
-## Description of the Rosetta XML script
 
-The following is an example of a Rosetta XML script used in the PBEE. In general, the script outlines a pipeline for analyzing and manipulating protein structures, utilizing a variety of scoring functions, residue selectors, simple metrics, filters, movers, and protocols. In this context, the script aims to assess and refine interactions between two protein chains, focusing on interaction energy and structural features. Furthermore, the script includes steps for minimization, energy metric calculation, and structure selection based on specific filters. 
+# Description of the Rosetta XML script
+
+The following is an example of a Rosetta XML script used in the PBEE. The script outlines a pipeline for analyzing and manipulating protein structures, utilizing a variety of scoring functions, residue selectors, simple metrics, filters,  and movers. In this context, the script aims to assess and refine interactions between two protein chains, focusing on interaction energy and structural features. In summary, the XML script represents a detailed plan for protein structure analysis and manipulation using Rosetta. It outlines a series of steps aimed at evaluating protein chain interactions and improving structure quality.
+
 
 ```xml
 <ROSETTASCRIPTS>
@@ -124,10 +129,9 @@ The following is an example of a Rosetta XML script used in the PBEE. In general
 ```
 
 1. The script begins by defining the **scoring functions** to be used, which weigh different energetic terms concerning protein interactions;
-2. Subsequently, **residue selectors** are set up to identify the protein chains of interest, labeled as "**partner1**" and "**partner2**." 
-3. Task operations are also defined to initialize parameters from the command line. The next script section introduces **simple metrics** that evaluate specific aspects of the protein structure, such as interaction energy between selected residues in the "partner1" and "partner2" chains. 
-4. In the **filters** section, a series of filters are defined to assess structural and energetic properties of interactions. These filters encompass calculations of shape complementarity, molecular surface contacts, interface holes, and changes in free energy (ddG). 
-5. **Movers** are defined to carry out minimization and interface analysis. This includes minimization with varying parameters and levels of detail, as well as **interface analysis** to evaluate features such as packing and hydrogen bonding. Lastly, protocols are constructed using the defined movers and filters. 
-6. The movers and filters are added in a specific sequence to perform desired analysis and refinement steps. This encompasses minimization, metric calculation, interface analysis, and the application of filters to select structures meeting predetermined criteria.
-
-In summary, the XML script represents a detailed plan for protein structure analysis and manipulation using Rosetta. It outlines a series of steps aimed at evaluating protein chain interactions and improving structure quality.
+2. Subsequently, **residue selectors** are set up to identify the protein chains of interest, labeled as **partner1** and **partner2**; 
+3. Task operations are also defined to initialize parameters from the command line;
+4. The next script section introduces **simple metrics** that evaluate specific aspects of the protein structure, such as interaction energy between selected residues in the **partner1** and **partner2** chains; 
+5. In the **filters** section, a series of filters are defined to assess structural and energetic properties of interactions. These filters encompass calculations of shape complementarity, molecular surface contacts, interface holes, and changes in free energy (ddG);
+6. **Movers** are defined to carry out minimization and interface analysis. This includes minimization with varying parameters and levels of detail, as well as **interface analysis** to evaluate features such as packing and hydrogen bonding. 
+7. Lastly, protocols are constructed using the defined movers and filters. The movers and filters are added in a specific sequence to perform desired analysis and refinement steps. This encompasses minimization, metric calculation, interface analysis, and the application of filters to select structures meeting predetermined criteria.
