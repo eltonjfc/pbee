@@ -47,8 +47,11 @@ flowchart TB
 
 1. Clone this repository on your machine: `git clone https://github.com/eltonjfc/pbee.git`
 2. Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine, save and close the file;
-3. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
-4. Download (or update) the required packages, and ML models: `pip3 install -r requirements.txt && python3 update_basemodels.py`
+   ```
+   PbeePATH = '/path/to/pbee/folder'
+   ```
+4. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
+5. Download (or update) the required packages, and ML models: `pip3 install -r requirements.txt && python3 update_basemodels.py`
 
 **⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be properly installed and configured before running PBEE. More information on downloading, installing and configuring can be found on the software's web page (https://www.rosettacommons.org/).
 
