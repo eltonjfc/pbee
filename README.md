@@ -78,8 +78,10 @@ The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_o
 | 1xgu.xml          | Rosetta protocol that performs geometry optimization and interface analysis |
 | 1xgu_rlx_0001.pdb | Optimized structure |
 | dG_pred.csv       | Rosetta descriptors and dGbind predicted by PBEE |
-| score_rlx.csv     | |
-| score_rlx.sc      | |
+| score_rlx.csv     | Rosetta descriptors (csv format required by PBEE) |
+| score_rlx.sc      | Rosetta descriptors (json format) |
+
+
 
 # Description of the Rosetta XML script
 
