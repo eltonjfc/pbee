@@ -87,7 +87,7 @@ A detailed description of the output files can be seen in the table below:
 | score_rlx.csv     | Rosetta descriptors (.csv format required by PBEE) |
 | score_rlx.sc      | Rosetta descriptors (.json format) |
 
-
+# Description of the ML model
 
 # Description of the Rosetta XML script
 
