@@ -75,13 +75,7 @@ The example below includes the structure of an antibody (HyHEL-63) that binds to
 python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
 
-![ ](https://ibb.co/6wvXHWC)
-
-The above command will redirect the outputs to `./test` folder. 
-
-```
-<img https://drive.google.com/file/d/1_D56PT2DWC9P300D4Nj0TkAwiJFvwqQU/view?usp=drive_link>
-```
+The above command will redirect the outputs to `./test` folder.
 
 A detailed description of the output files can be seen in the table below:
 
