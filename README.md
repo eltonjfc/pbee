@@ -74,7 +74,9 @@ The example below includes the structure of an antibody (HyHEL-63) that binds to
 python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
 
-The above command will redirect the outputs to `./test` folder. A detailed description of the output files can be seen in the table below:
+The above command will redirect the outputs to `./test` folder. 
+
+A detailed description of the output files can be seen in the table below:
 
 | File              | Description                                                                 |
 |-------------------|-----------------------------------------------------------------------------|
