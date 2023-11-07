@@ -49,7 +49,7 @@ flowchart TB
 1. Clone this repository on your machine: `git clone https://github.com/eltonjfc/pbee.git`
 2. Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine (see the example below), save and close the file;
    ```
-   PbeePATH=/path/to/pbee/folder
+   PbeePATH=/home/eltonjfc/scripts/python/pbee
    ```
 4. Open the terminal (ctrl + t) and execute the following command: `bash setup.sh`
 5. Download (or update) the required packages, and ML models: `pip3 install -r requirements.txt && python3 update_basemodels.py`
