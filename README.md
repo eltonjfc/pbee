@@ -46,7 +46,7 @@ flowchart TB
 # Download & Install
 
 1. Clone this repository on your machine: `git clone https://github.com/eltonjfc/pbee.git`
-2. "Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine (see the example below), save and close the file;"
+2. Go into the `pbee` folder and open the `setup.sh` file and edit the PbeePATH variable with the PBEE directory path on your machine (see the example below), save and close the file;
    ```
    PbeePATH=/path/to/pbee/folder
    ```
