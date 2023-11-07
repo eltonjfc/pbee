@@ -13,7 +13,7 @@ flowchart TB
 	step5["Geometry optimization \n (Rosetta)"] 
 	step6["Interface analysis \n (Rosetta)"] 
 	step7[SL engine]
-	result[dGbind]
+	result[ΔGbind]
 	ends[End process]
 	
 	subgraph B[ ]
