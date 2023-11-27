@@ -56,8 +56,6 @@ flowchart TB
 
 **⚠️ Warning**: After installing Rosetta on your workstation, it is essential that you compile the DAlphaBall executable in source/external/DAlpahBall. This is done by navigating to main/source/external/DAlpahBall and typing make. (You may need to make platform-specific settings in the Makefile.)
 
-Translated with DeepL.com (free version)
-
 ## Arguments description
 
 | Argument          | Mandatory | Description |
