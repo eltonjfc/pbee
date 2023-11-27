@@ -1,25 +1,26 @@
 #!/bin/python3
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Written by Elton Chaves (chavesejf@gmail.com)
-# -----------------------------------------------------------------------------------
-# Protein Binding Energy Estimator (PBEE)
-# Protein Engineering and Biomaterial Modeling Group (BIOMAT)
-# Aggeu Magalhaes Institute, Oswaldo Cruz Foundation, Recife-PE, Brazil
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-import os, math, time, shutil, argparse, subprocess
-import pandas as pd
-from modules.configure import *
+
+# ===================================================================================
+# Name.......: Protein Binding Energy Estimator (PBEE)
+# Author.....: Elton J. F. Chaves
+# Contact....: chavesejf@gmail.com
+# Description: A pipeline that used ML model based on Rosetta descriptors to predict
+#              the binding affinity of protein-protein complexes.
+# ===================================================================================
+from configure import *
 from modules.detect_ions import *
 from modules.detect_gaps import *
 from modules.rosettaXML import *
 from modules.superlearner import *
+import os, math, time, shutil, argparse, subprocess, glob
+import pandas as pd
 
 def pre_processing(pdbfiles):
     """
     
     Parameters:
     -----------
-    - pdbfiles ->
+    - pdbfiles -> 
 
     Returns:
     - bad_structures ->
@@ -147,15 +148,9 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
 
         # 8 Apaga arquivos temporários
         remove_files(files=[
-            f'{outdir}/{basename}_{partner1}.pdb',
-            f'{outdir}/{basename}_{partner2}.pdb',
-            f'{outdir}/{basename}_{partner1}.fasta',
-            f'{outdir}/{basename}_{partner2}.fasta',
-            f'{outdir}/{basename}_jd2_01.pdb',
-            f'{outdir}/{basename}_jd2_02.pdb',
-            f'{outdir}/{basename}_jd2.pdb',
-            f'{outdir}/{basename}_jd2_0001.pdb',
-            f'{outdir}/score.sc', f'{outdir}/score_rlx.csv', f'{outdir}/score_rlx.sc'])
+            f'{outdir}/score.sc', 
+            f'{outdir}/score_rlx.csv',
+            f'{outdir}/score_rlx.sc'])
 
 def remove_files(files):
     for file in files:
@@ -360,14 +355,18 @@ def print_infos(message, type):
 def print_end():
     exit('\n --- End process ---\n')
 
-def header():
+def header(version):
     print('')
-    print( ' =======================================')
-    print( ' Protein Binding Energy Estimator (PBEE)')
-    print()
-    print( '     DOI: -')
-    print(f' version: ')
-    print( ' =======================================')
+    print(' ========================================')
+    print('   Protein Engineering and Design Group  ')    
+    print(' ----------------------------------------')
+    print('')
+    print(' *** Protein Binding Energy Estimator ***')
+    print('                  \,,/                   ')
+    print('')
+    print('     DOI: -')
+    print(' version: 1.0')
+    print(' ========================================')
     print('')
 
 if (__name__ == "__main__"):
@@ -378,7 +377,7 @@ if (__name__ == "__main__"):
     submit_dir = os.getcwd()
 
     # Imprime o cabeçalho na tela
-    header()
+    header(version=1.0)
 
     # Define PbeePATH e algoritmos ML
     PbeePATH     = configure_pbee()
