@@ -1,12 +1,6 @@
 #!/bin/python3
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Escrito por EC
-#
-# Descrição: Faz a leitura de um arquivo .pdb considerando
-# as cadeias em partner1 e partner2 e reconhece íons a uma
-# distância menor que 2A de qualquer átomo da proteína.
-#
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Written by Elton Chaves
+
 import math
 
 def detect_ions(pdbfile,cutoff,chains):

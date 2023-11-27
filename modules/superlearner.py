@@ -1,3 +1,6 @@
+#!/bin/python3
+# Written by Roberto Lins
+
 import pickle, joblib
 import numpy as np
     

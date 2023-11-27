@@ -1,7 +1,6 @@
 #!/bin/python3
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Escrito por João Rodrigues (pdb-tools)
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Written by João Rodrigues (pdb-tools)
+
 import sys
 
 def detect_gaps(pdbfile):

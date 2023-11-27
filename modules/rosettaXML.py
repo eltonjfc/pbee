@@ -1,3 +1,6 @@
+#!/bin/python3
+# Written by Elton Chaves
+
 import os, string
 
 def prepareXML(outdir, prefix, partner1, partner2):
