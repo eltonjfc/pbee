@@ -79,7 +79,7 @@ cd /path/to/pbee/folder
 python3 pbee.py --ipdb ./test/pdbs/1xgu.pdb --partner1 AB --partner2 C --odir ./test
 ```
 
-The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`. A detailed description of the output files generated can be seen in the table below:
+The above command will redirect the outputs to `/path/to/pbee/folder/test/pbee_outputs/1xgu`.
 
 
 
