@@ -48,10 +48,11 @@ flowchart TB
 
 
 ## Download & Install
+# Step1
+Clone this repository on your computer or download it;
 
-1. Clone this repository on your computer or download it;
-2. Open the terminal (CTRL + ALT + T) and run the following command: `pip3 install -r requirements.txt`;
-3. Still with the terminal open, run this command to update the base models: `python3 update_basemodels.py`.
+# Step 2
+Open the terminal (CTRL + ALT + T) and run the following commands: `pip3 install -r requirements.txt && python3 update_basemodels.py`;
 
 **⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be installed and configured correctly before running PBEE. More information on downloading, installing and configuring can be found on the software's website (https://www.rosettacommons.org/).
 
