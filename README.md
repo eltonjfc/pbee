@@ -55,7 +55,7 @@ Clone this repository on your computer or download it;
 ### Step 2
 Open the terminal (CTRL + ALT + T) and run the following commands: `pip3 install -r requirements.txt && python3 update_basemodels.py`;
 
-###⚠️ Warning: RosettaCommons binaries are not available in this repository and must be installed and configured correctly before running PBEE. More information on downloading, installing and configuring can be found on the software's website (https://www.rosettacommons.org/).
+###**⚠️ Warning**: RosettaCommons binaries are not available in this repository and must be installed and configured correctly before running PBEE. More information on downloading, installing and configuring can be found on the software's website (https://www.rosettacommons.org/).
 
 **⚠️ Warning**: After installing Rosetta on your workstation, it is essential that you compile the DAlphaBall executable in source/external/DAlpahBall. This is done by navigating to main/source/external/DAlpahBall and typing make. (You may need to make platform-specific settings in the Makefile.)
 
