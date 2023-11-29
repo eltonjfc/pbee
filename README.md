@@ -49,16 +49,13 @@ flowchart TB
 
 ## Download & Install
 
-### Step 1
-Clone this repository on your computer or download it:
+#### Step 1 - Clone this repository on your computer or download it:
 
 ```
 clone git
 ```
 
-### Step 2
-
-Open the terminal (ctrl + alt + t) and run the following command: 
+#### Step 2 - Open the terminal (ctrl + alt + t) and run the following command: 
 
 ```
 pip3 install -r requirements.txt && python3 update_basemodels.py
