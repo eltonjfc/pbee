@@ -124,7 +124,7 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
         print_infos(message=f'[{mol}] geometry optimization and interface analysis', type='protocol')
         rosetta_features = get_interface_features(_pdb, ions, _xml, outdir)
         rosetta_features = pd.read_csv(json2csv(rosetta_features,outdir), delimiter=',').iloc[:,1:]
-
+        
         # 7. calcula dG com o super modelo
         # --------------------------------
         print_infos(message=f'[{mol}] calculating dGbind', type='protocol')
@@ -139,6 +139,7 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
 
         dG_pred = predictor(basemodels, superlearner, x_train, y_train, rosetta_features)
         affinity = calc_affinity(dG_pred)
+        rosetta_features.insert(0, 'pdb', basename)
         rosetta_features.insert(1, 'dG_pred', dG_pred)
         rosetta_features.insert(2, 'affinity', affinity)
         rosetta_features.to_csv(f'{outdir}/dG_pred.csv', index=False)
@@ -148,16 +149,22 @@ def post_processing(pdbfiles, partner1, partner2, basemodels, superlearner):
 
         # 8 Apaga arquivos temporários
         remove_files(files=[
+            glob.glob(f'{outdir}/*fasta'),
+            f'{outdir}/{basename}_jd2.pdb',
+            f'{outdir}/{basename}_jd2_01.pdb',
+            f'{outdir}/{basename}_jd2_02.pdb',
+            f'{outdir}/{basename}_jd2_0001.pdb',
             f'{outdir}/score.sc', 
-            f'{outdir}/score_rlx.csv',
-            f'{outdir}/score_rlx.sc'])
+            f'{outdir}/score_rlx.csv'])
 
 def remove_files(files):
     for file in files:
-        if os.path.exists(file):
-            os.remove(file)
+        if type(file) is list:
+            for item in file:
+                os.remove(item)
         else:
-            continue
+            if os.path.exists(file):
+                os.remove(file)
 
 def partner_checker(pdbfile, partner1, partner2):
     """
