@@ -41,7 +41,7 @@ flowchart TB
 | python         | 3.10    |
 | RosettaCommons | 3.12    |
 | scikit-learn   | 1.3.0   |
-| xgboost        | 
+| xgboost        | 2.0.1   |
 | numpy          | 1.24.4  |
 | pandas         | 2.0.3   |
 | gdown          | 4.7.1   |
